@@ -14,6 +14,7 @@ numbers = numbers.concat([].slice.call(lastRow.children));
 
 const display = document.querySelector(".display");
 
+
 let firstNumber = "";
 let secondNumber = "";
 let operator;
@@ -58,8 +59,20 @@ clearBtn.addEventListener("click", () => {
   display.textContent = "";
   firstNumber = 0;
   secondNumber = 0;
-  output = 0;
+  count = 0;
 });
+
+const signBtn = document.querySelector(".sign");
+signBtn.addEventListener("click", () => {
+  display.textContent = -1 * display.textContent;
+});
+
+
+const backspace = document.querySelector(".backspace");
+backspace.addEventListener("click", () => {
+  display.textContent = display.textContent.slice(0,-1);
+})
+
 
 const operatorDiv = document.querySelector(".operator");
 var operators = [].slice.call(operatorDiv.children);
@@ -84,8 +97,8 @@ operators.forEach((element) => {
     }
     flag = 1;
     periodElement.disabled = false;
-    // console.log(firstNumber);
-    // console.log(secondNumber);
+    console.log(firstNumber);
+    console.log(secondNumber);
   });
 });
 
