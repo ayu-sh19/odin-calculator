@@ -27,8 +27,10 @@ body {
   justify-content: flex-end;
   align-items: center;
   font-weight: 900px;
-  font-size:60px;
-  font-family: Anta;
+  font-family: monospace;
+  font-size:5em;
+  text-shadow: 1.3px 1.3px #383838;
+  overflow: hidden;
 }
 
 .keys {
@@ -54,9 +56,9 @@ button {
   justify-content: center;
   align-items: center;
   font-weight: 900px;
-  font-size: x-large;
   padding: 0;
   font-family: Anta;
+  font-size:2em;
 }
 
 .period {
@@ -69,8 +71,8 @@ button {
   justify-content: center;
   align-items: center;
   font-weight: 900px;
-  font-size: x-large;
   font-family: Anta;
+  font-size:3em;
 }
 
 /* .equal {
@@ -107,8 +109,8 @@ button {
   justify-content: center;
   align-items: center;
   font-weight: 900px;
-  font-size: x-large;
   font-family: Anta;
+  font-size:2em;
 }
 
 .numbersLineOne {
@@ -126,8 +128,8 @@ button {
   justify-content: center;
   align-items: center;
   font-weight: 900px;
-  font-size: x-large;
   font-family: Anta;
+  font-size:2em;
 }
 
 .numbersLineTwo {
@@ -145,8 +147,8 @@ button {
   justify-content: center;
   align-items: center;
   font-weight: 900px;
-  font-size: x-large;
   font-family: Anta;
+  font-size:2em;
 }
 
 .numbersLineThree {
@@ -164,8 +166,8 @@ button {
   justify-content: center;
   align-items: center;
   font-weight: 900px;
-  font-size: x-large;
   font-family: Anta;
+  font-size:2em;
 }
 
 .one:active,
@@ -195,6 +197,6 @@ button {
   justify-content: center;
   align-items: center;
   font-weight: 900px;
-  font-size: x-large;
   font-family: Anta;
+  font-size:2em;
 }

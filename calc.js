@@ -13,7 +13,7 @@ const periodElement = document.querySelector(".period");
 numbers = numbers.concat([].slice.call(lastRow.children));
 
 const display = document.querySelector(".display");
-
+display.textContent = "0";
 
 let firstNumber = "";
 let secondNumber = "";
@@ -21,9 +21,11 @@ let operator;
 
 let count = 0;
 let output = 0;
-let flag = 0;
+let flag = 1;
 
 let periodFlag = false;
+let restrictFlag = false;
+let signFlag = false;
 
 let obj = {
   zero: 0,
@@ -40,39 +42,49 @@ let obj = {
 };
 
 numbers.forEach((element) => {
-  element.addEventListener("click", () => {
-    if (element.className == "period") {
-      element.disabled = true;
-    }
+  element.addEventListener("click", (event) => {
+    if (restrictFlag == false) {
+      if (element.className == "period") {
+        element.disabled = true;
+      }
 
-    if (flag == 1) {
-      display.textContent = obj[element.className];
-      flag = 0;
-    } else {
-      display.textContent += obj[element.className];
+      if (flag == 1) {
+        display.textContent = obj[element.className];
+        flag = 0;
+      } else {
+        display.textContent += obj[element.className];
+      }
+    }
+    if (display.textContent.length == 10) {
+      restrictFlag = true;
     }
   });
 });
 
+display.addEventListener("mousedown", (event) => {});
+
 const clearBtn = document.querySelector(".clear");
 clearBtn.addEventListener("click", () => {
-  display.textContent = "";
+  display.textContent = "0";
   firstNumber = 0;
   secondNumber = 0;
   count = 0;
+  restrictFlag = false;
+  flag = 1;
 });
 
 const signBtn = document.querySelector(".sign");
 signBtn.addEventListener("click", () => {
-  display.textContent = -1 * display.textContent;
+  display.textContent = -1 * parseInt(display.textContent);
+  if (operator == "equal") {
+    firstNumber = -1 * firstNumber;
+  }
 });
-
 
 const backspace = document.querySelector(".backspace");
 backspace.addEventListener("click", () => {
-  display.textContent = display.textContent.slice(0,-1);
-})
-
+  display.textContent = display.textContent.slice(0, -1);
+});
 
 const operatorDiv = document.querySelector(".operator");
 var operators = [].slice.call(operatorDiv.children);
@@ -86,21 +98,33 @@ operators.forEach((element) => {
     } else if (count == 1) {
       if (operator != "equal") {
         secondNumber = parseFloat(display.textContent);
-        output = parseFloat(operate(firstNumber, operator, secondNumber));
+        output =
+          parseFloat(operate(firstNumber, operator, secondNumber)).toFixed(4) *
+          1;
+
+        if (output > 1e9) {
+          output = output.toExponential(2);
+        }
+
         display.textContent = output;
         firstNumber = output;
+        // firstNumber = !signFlag ? output : -1*output;
         operator = element.className;
       } else {
         operator = element.className;
         display.textContent = output;
       }
     }
+
     flag = 1;
     periodElement.disabled = false;
+    restrictFlag = false;
     console.log(firstNumber);
     console.log(secondNumber);
   });
 });
+
+// console.log(display.textContent.length);
 
 function add(a, b) {
   return a + b;
